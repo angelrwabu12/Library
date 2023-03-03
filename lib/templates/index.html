@@ -2,18 +2,23 @@
 {% load static %}
 {% block content  %}
 
-    {% for book in books %}
-      <div class="row">
-        <div class="column">
+
+       <div class="row">
+      {% for book in books %}
+        <div class="col-sm-4">
           <div class="card">
-            <a href="{% url 'authordetail' %}">
-            <h3>{{ book.book_name }}</h3></a>
-            <h1>{{book.book_tittle}}</h1>
-            <h4>{{book.book_author}}</h4>
-           
+            <div class="card-body">
+              <img src="{{book.pic.url}}" width="100"/>
+              <a href="{% url 'authordetail' book.id %}">
+              <h5 class="card-title">{{ book.book_name }}</h5></a>
+              <h1 class="card-text">{{book.book_tittle}}</h1>
+              <h4>{{book.book_author}}</h4>
+              <p>{{book.book_summary}}<p>
+            </div>
+          </div>
         </div>
-       </div>
-       {% endfor %}
+      {% endfor %}
+      </div>
 
 {% endblock  %}
 

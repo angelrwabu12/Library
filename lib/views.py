@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from .models import book
+from .forms import BookForm
 
 # Create your views here.
 def home(request):
@@ -11,6 +12,14 @@ def about(request):
 def contact(request):
     return render(request,'contact.html')
 def registration(request):
-    return render(request,'registration.html ')
-def authordetail(request):
-    return render(request,'authordetail.html')
+    if request.method =='POST':
+        form =BookForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form=BookForm()
+    return render(request,'registration.html',{'form':form})
+def authordetail(request,pk):
+    bookk=get_object_or_404(book,pk=pk)
+    return render(request,'authordetail.html',{'book':bookk})

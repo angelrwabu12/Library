@@ -2,9 +2,15 @@
 {% load static %}
 {% block content %}
 
-    <ul>
-        <li>Book_name:{{book.book_name}}</li>
-        <li>Book_tittle:{{book.book_tittle}}</li>
-        <li>Book_author:{{book.book_author}}</li>
-    </ul>
+    
+    <div class="picturecard">
+        <img src="{{book.pic.url}}" alt="Avatar" width="150"/>
+        <div class="picturecontainer">
+          <h4><b>{{book.book_tittle}}</b></h4> 
+          <h5>{{book.book_author}}</h5>
+          <p>{{book.book_name}}</p> 
+          <h2>hi</h2>
+        </div>
+      </div>
+      
 {% endblock %}
